@@ -227,4 +227,70 @@ Estes comandos são úteis para monitorar a memória e os processos em execuçã
 
 -----
 
+-----
+
+# Gerenciando Serviços no Linux com `systemctl`
+
+O `systemctl` é a principal ferramenta para controlar o **systemd**, o gerenciador de sistema e serviços padrão na maioria das distribuições Linux modernas. Ele permite que você inspecione e manipule o "estado" dos serviços.
+
+-----
+
+## Listando Serviços
+
+Você pode listar os serviços de várias maneiras, dependendo do que você quer verificar:
+
+### Listar Todos os Serviços (Carregados ou Não)
+
+Este comando mostra uma lista completa de todas as unidades de serviço, incluindo seu **estado de carregamento (load)**, **estado ativo (active)**, **sub-estado (sub-state)** e uma breve descrição.
+
+```bash
+systemctl list-units --type=service --all
+```
+
+-----
+
+### Listar Todos os Arquivos de Unidade de Serviço (Habilitados, Desabilitados, etc.)
+
+Para ver todos os arquivos de unidade de serviço que o systemd conhece, independentemente de estarem carregados ou ativos, incluindo aqueles que estão **habilitados**, **desabilitados**, **estáticos** ou **mascarados**:
+
+```bash
+systemctl list-unit-files --type=service
+```
+
+Este comando mostra os arquivos de unidade de serviço e seu **status de predefinição do fornecedor** (por exemplo, `enabled`, `disabled`).
+
+-----
+
+### Listar Apenas Serviços em Execução (Running)
+
+Para listar especificamente os serviços que estão atualmente **ativos** e em um estado de **execução**:
+
+```bash
+systemctl list-units --type=service --state=running
+```
+
+-----
+
+### Listar Apenas Serviços Habilitados
+
+Para ver os serviços que estão configurados para **iniciar automaticamente na inicialização** do sistema:
+
+```bash
+systemctl list-unit-files --type=service --state=enabled
+```
+
+-----
+
+### Listar Apenas Serviços Desabilitados
+
+Para ver os serviços que estão configurados para **não iniciar automaticamente na inicialização** do sistema:
+
+```bash
+systemctl list-unit-files --type=service --state=disabled
+```
+
+-----
+
+Esses comandos são essenciais para monitorar e gerenciar os processos em segundo plano do seu sistema Linux. Se precisar de mais informações sobre como iniciar.
+
 Este guia cobre os comandos mais básicos e úteis para começar no Linux. 
